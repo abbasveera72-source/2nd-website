@@ -1,96 +1,215 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>M. Abbas - Portfolio</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f4f4f4;
-            color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M. Abbas | Portfolio</title>
 
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
 
-        header h1 {
-            margin: 0;
-        }
+body {
+  background: linear-gradient(135deg, #0d1117, #161b22);
+  color: #c9d1d9;
+}
 
-        section {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
+/* NAVBAR */
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background: rgba(22, 27, 34, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+}
 
-        .card {
-            background: white;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
+header h1 {
+  color: #58a6ff;
+}
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #2c3e50;
-            color: white;
-            margin-top: 20px;
-        }
-    </style>
+nav a {
+  margin-left: 20px;
+  color: #c9d1d9;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #58a6ff;
+}
+
+/* HERO */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  color: #58a6ff;
+}
+
+.hero span {
+  color: #f78166;
+}
+
+.typing {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  border-right: 2px solid #58a6ff;
+  padding-right: 5px;
+}
+
+/* SECTIONS */
+section {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+h2 {
+  color: #58a6ff;
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.card {
+  background: rgba(22, 27, 34, 0.7);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(33, 38, 45, 0.9);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid #30363d;
+}
+
+/* RESPONSIVE */
+@media(max-width: 600px){
+  .hero h2 {
+    font-size: 2rem;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>M. Abbas</h1>
-    <p>Computer Engineering Student</p>
+  <h1>M. Abbas</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
-<section>
-    <div class="card">
-        <h2>About Me</h2>
-        <p>
-            I am M. Abbas, a Computer Engineering student at the University of Engineering and Technology. 
-            I am passionate about technology, programming, and building modern websites.
-        </p>
-    </div>
+<section class="hero">
+  <h2>Hi, I'm <span>M. Abbas</span></h2>
+  <div class="typing" id="typing"></div>
+  <p>Roll No: 149 | Computer Engineering Student</p>
+</section>
 
-    <div class="card">
-        <h2>Education</h2>
-        <p>
-            Bachelor in Computer Engineering <br>
-            University of Engineering and Technology
-        </p>
-    </div>
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card">
+    <p>
+      I am a passionate Computer Engineering student at UET. I love coding,
+      building embedded systems, and solving real-world problems using technology.
+    </p>
+  </div>
+</section>
 
-    <div class="card">
-        <h2>Skills</h2>
-        <p>
-            HTML, CSS, JavaScript <br>
-            Basic Programming <br>
-            Problem Solving
-        </p>
-    </div>
+<section id="skills">
+  <h2>Skills</h2>
+  <div class="card">💻 C / C++ / Python</div>
+  <div class="card">⚡ Arduino & Embedded Systems</div>
+  <div class="card">🌐 HTML, CSS, JavaScript</div>
+  <div class="card">🛠 Git & GitHub</div>
+</section>
 
-    <div class="card">
-        <h2>Contact</h2>
-        <p>Email: your@email.com</p>
-        <p>Phone: +92-XXXXXXXXXX</p>
-    </div>
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div class="card">
+    <h3>Smart Home Automation</h3>
+    <p>IoT-based system using Arduino and sensors.</p>
+  </div>
+
+  <div class="card">
+    <h3>Student Management System</h3>
+    <p>Built using C++ for handling student records.</p>
+  </div>
+
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card">
+    <p>Email: your@email.com</p>
+    <p>GitHub: github.com/yourusername</p>
+  </div>
 </section>
 
 <footer>
-    <p>© 2026 M. Abbas | All Rights Reserved</p>
+  <p>© 2026 M. Abbas | Roll No 149</p>
 </footer>
+
+<script>
+const text = ["Future Engineer 🚀", "Web Developer 💻", "Embedded Systems Enthusiast ⚡"];
+let i = 0;
+let j = 0;
+let currentText = "";
+let isDeleting = false;
+
+function type() {
+  currentText = text[i];
+
+  if (isDeleting) {
+    document.getElementById("typing").textContent =
+      currentText.substring(0, j--);
+  } else {
+    document.getElementById("typing").textContent =
+      currentText.substring(0, j++);
+  }
+
+  if (!isDeleting && j === currentText.length) {
+    isDeleting = true;
+    setTimeout(type, 1000);
+    return;
+  }
+
+  if (isDeleting && j === 0) {
+    isDeleting = false;
+    i = (i + 1) % text.length;
+  }
+
+  setTimeout(type, isDeleting ? 50 : 100);
+}
+
+type();
+</script>
 
 </body>
 </html>
