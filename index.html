@@ -20,20 +20,16 @@
                 radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
             color: #f8fafc;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding-bottom: 50px;
             line-height: 1.6;
         }
 
-        .header-main {
-            padding: 100px 20px 40px;
-            text-align: center;
-        }
+        .header-main { padding: 80px 20px 40px; text-align: center; }
 
         .profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 150px; height: 150px;
             border-radius: 50%;
             border: 3px solid var(--neon-blue);
             object-fit: cover;
@@ -52,8 +48,7 @@
         }
 
         .name-title {
-            font-size: 3rem;
-            margin: 0;
+            font-size: 3rem; margin: 0;
             background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -83,58 +78,37 @@
             transition: transform 0.3s ease;
         }
 
-        .content-section:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-purple);
-        }
+        .content-section:hover { transform: translateY(-5px); border-color: var(--neon-purple); }
 
-        /* Banner for Tech Article */
         .article-banner {
             width: 100%;
-            height: 320px;
-            background-color: #000;
+            height: auto;
             border-radius: 15px;
             margin-bottom: 25px;
             border: 1px solid var(--border);
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .article-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .article-banner img { width: 100%; display: block; border-radius: 12px; }
 
         h2 { color: var(--neon-blue); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
 
         .tag-row { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
         .tag {
-            background: #1e293b;
-            color: var(--neon-purple);
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            background: #1e293b; color: var(--neon-purple);
+            padding: 4px 12px; border-radius: 6px; font-size: 0.8rem;
             border: 1px solid rgba(129, 140, 248, 0.3);
         }
 
         .btn-primary {
-            display: inline-block;
-            padding: 12px 30px;
+            display: inline-block; padding: 12px 30px;
             border: 1.5px solid var(--neon-blue);
-            color: var(--neon-blue);
-            text-decoration: none;
-            border-radius: 10px;
-            transition: 0.3s;
-            font-weight: bold;
-            margin-top: 15px;
+            color: var(--neon-blue); text-decoration: none;
+            border-radius: 10px; font-weight: bold; margin-top: 15px;
         }
 
         .btn-primary:hover {
-            background: var(--neon-blue);
-            color: var(--bg-deep);
+            background: var(--neon-blue); color: var(--bg-deep);
             box-shadow: 0 0 20px var(--neon-blue);
         }
     </style>
@@ -142,55 +116,46 @@
 <body>
 
     <header class="header-main">
-        <img src="ab.png" alt="M. Abbas" class="profile-pic">
+        <img src="ab.png" alt="M. Abbas Profile" class="profile-pic">
         <div class="identity-card">
             <h1 class="name-title">M. ABBAS</h1>
             <div class="roll-badge">ROLL NO: 149</div>
             <p style="color: var(--text-dim); margin-top: 15px;">
                 Computer Engineering Student | UET Lahore <br>
-                Specializing in IoT, SQL Architecture, and Embedded Intelligence
+                Specializing in IoT Architecture and Embedded Intelligence
             </p>
         </div>
     </header>
 
     <div class="container">
-        
         <div class="content-section">
-            <h2>01 // FEATURED_BLOG</h2>
+            <h2>01 // FEATURED_TECH_LOG</h2>
             
             <div class="article-banner">
-                
-            </div>
+                            </div>
 
             <h3 style="font-size: 1.7rem; margin: 0;">Edge Intelligence: Redefining Real-Time Data Pipelines</h3>
             
             <div class="tag-row">
-                <span class="tag">Embedded Systems</span>
+                <span class="tag">IoT Architecture</span>
                 <span class="tag">SQL Optimization</span>
-                <span class="tag">IoT Nodes</span>
                 <span class="tag">C# Integration</span>
             </div>
 
             <p style="color: var(--text-dim);">
-                In the modern engineering landscape, moving data from hardware sensors to a central server efficiently is critical. This article explores using <strong>WAMP/MySQL</strong> frameworks to build robust telemetry pipelines, ensuring data integrity while minimizing latency in <strong>IoT edge nodes</strong>.
+                In modern engineering, the focus is shifting to <strong>Edge Computing</strong>. This project explores using <strong>MySQL</strong> and <strong>C#</strong> to build high-speed telemetry pipelines. By processing data locally at the sensor node, we reduce latency and server load significantly.
             </p>
             
+            <img src="ac.png" alt="Data Visualization" style="width:100%; border-radius: 10px; margin-top: 15px; opacity: 0.8;">
+            <br><br>
             <a href="first_blog.html" class="btn-primary">Open Technical Log</a>
         </div>
 
-        <div class="content-section">
-            <h2>02 // TECHNICAL_STACK</h2>
-            <p style="color: var(--text-dim);">
-                Highly proficient in <strong>C# .NET</strong> development and <strong>Python</strong> for data modeling. Expertise in managing relational databases using <strong>MySQL</strong> and developing low-level <strong>C</strong> logic for hardware interfaces.
-            </p>
-        </div>
-
         <div class="content-section" style="text-align: center; border: 1px dashed var(--neon-purple);">
-            <h2>03 // CONNECT</h2>
-            <p>Seeking opportunities in system architecture and software engineering.</p>
-            <a href="mailto:your-email@example.com" class="btn-primary" style="border-color: var(--neon-purple); color: var(--neon-purple);">Initialize Connection</a>
+            <h2>02 // INITIALIZE_CONNECTION</h2>
+            <p>Ready to collaborate on Computer Engineering research and development.</p>
+            <a href="mailto:your-email@example.com" class="btn-primary" style="border-color: var(--neon-purple); color: var(--neon-purple);">SEND_MESSAGE.EXE</a>
         </div>
-
     </div>
 
 </body>
