@@ -5,186 +5,226 @@
 
     <style>
         body {
+            margin:0;
+            font-family: 'Segoe UI', sans-serif;
             background:#0f172a;
-            color:white;
-            font-family:Arial;
+            color:#e2e8f0;
+        }
+
+        header {
+            background:#020617;
+            padding:20px;
             text-align:center;
+            border-bottom:1px solid #1e293b;
+        }
+
+        header img {
+            width:70px;
+            border-radius:50%;
+        }
+
+        h1 { margin:10px 0 5px; }
+        h3 { margin-top:30px; }
+
+        .container {
+            max-width:900px;
+            margin:auto;
             padding:20px;
         }
 
-        h2 { margin-top:10px; }
+        .admin {
+            background:#1e293b;
+            padding:20px;
+            border-radius:12px;
+            margin-bottom:30px;
+        }
 
-        .profile img {
-            width:80px;
-            height:80px;
-            border-radius:50%;
+        input, textarea {
+            width:100%;
+            padding:10px;
+            margin:8px 0;
+            border-radius:8px;
+            border:none;
+            outline:none;
+            background:#0f172a;
+            color:white;
+        }
+
+        button {
+            padding:10px 16px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:bold;
+        }
+
+        .publish {
+            background:#38bdf8;
+            color:black;
         }
 
         .article {
             background:#1e293b;
-            margin:20px auto;
-            padding:15px;
-            border-radius:10px;
-            width:90%;
-            max-width:500px;
+            margin-bottom:20px;
+            border-radius:12px;
+            overflow:hidden;
+            transition:0.3s;
+        }
+
+        .article:hover {
+            transform:translateY(-5px);
         }
 
         .article img {
             width:100%;
-            border-radius:10px;
+            height:200px;
+            object-fit:cover;
+        }
+
+        .article-content {
+            padding:15px;
+        }
+
+        .read-btn {
+            background:#22c55e;
+            color:white;
         }
 
         #fullArticle {
             display:none;
-            background:#334155;
-            padding:20px;
+            background:#020617;
+            padding:25px;
+            border-radius:12px;
             margin-bottom:20px;
-            border-radius:10px;
         }
 
-        input, textarea {
-            width:90%;
-            margin:5px;
-            padding:10px;
-            border-radius:5px;
-            border:none;
+        .like { background:#ef4444; color:white; }
+        .close { background:#64748b; color:white; }
+
+        .comment-box {
+            margin-top:15px;
         }
 
-        button {
-            padding:8px 15px;
-            margin:5px;
-            background:skyblue;
-            border:none;
-            border-radius:5px;
-            cursor:pointer;
+        .comment {
+            background:#1e293b;
+            padding:8px;
+            margin:5px 0;
+            border-radius:6px;
         }
-
-        .like { background:#ef4444; }
-        .close { background:#64748b; }
     </style>
 </head>
 
 <body>
 
-<!-- Profile -->
-<div class="profile">
+<header>
     <img src="abbas.jpeg">
-    <h2>Abbas Tech Blog 🚀</h2>
+    <h1>Abbas Tech Blog</h1>
+    <p>Latest in Technology 🚀</p>
+</header>
+
+<div class="container">
+
+    <!-- ADMIN PANEL -->
+    <div class="admin">
+        <h3>Publish Article</h3>
+        <input id="title" placeholder="Article Title">
+        <input id="image" placeholder="Image (e.g. ac.png)">
+        <textarea id="content" rows="4" placeholder="Write your article..."></textarea>
+        <button class="publish" onclick="addArticle()">Publish</button>
+    </div>
+
+    <!-- FULL ARTICLE -->
+    <div id="fullArticle"></div>
+
+    <!-- ARTICLES -->
+    <div id="articles"></div>
+
 </div>
-
-<!-- ADMIN PANEL -->
-<h3>Add New Article</h3>
-<input id="title" placeholder="Article Title">
-<input id="image" placeholder="Image file name (e.g. ac.png)">
-<textarea id="content" placeholder="Write your tech article..."></textarea>
-<br>
-<button onclick="addArticle()">➕ Publish</button>
-
-<!-- FULL ARTICLE VIEW -->
-<div id="fullArticle"></div>
-
-<!-- ARTICLES LIST -->
-<div id="articles"></div>
 
 <script>
 let articles = JSON.parse(localStorage.getItem("articles")) || [];
 
-function saveArticles() {
+function save() {
     localStorage.setItem("articles", JSON.stringify(articles));
 }
 
 function addArticle() {
-    const title = document.getElementById("title").value;
-    const image = document.getElementById("image").value;
-    const content = document.getElementById("content").value;
+    const title = titleInput.value;
+    const image = imageInput.value;
+    const content = contentInput.value;
 
-    if (!title || !content) {
-        alert("Please fill all fields!");
-        return;
-    }
+    if (!title || !content) return alert("Fill all fields!");
 
     articles.unshift({
-        title,
-        image,
-        content,
-        likes: 0,
-        comments: []
+        title, image, content,
+        likes:0,
+        comments:[]
     });
 
-    saveArticles();
-    displayArticles();
+    save();
+    display();
 }
 
-function displayArticles() {
-    const container = document.getElementById("articles");
-    container.innerHTML = "";
+function display() {
+    articlesDiv.innerHTML = "";
 
-    articles.forEach((a, index) => {
-        container.innerHTML += `
-            <div class="article">
-                <img src="${a.image}">
-                <h3>${a.title}</h3>
-                <button onclick="readMore(${index})">Read More</button>
+    articles.forEach((a,i)=>{
+        articlesDiv.innerHTML += `
+        <div class="article">
+            <img src="${a.image}">
+            <div class="article-content">
+                <h2>${a.title}</h2>
+                <button class="read-btn" onclick="readMore(${i})">Read More</button>
             </div>
-        `;
+        </div>`;
     });
 }
 
-function readMore(index) {
-    const a = articles[index];
+function readMore(i){
+    let a = articles[i];
 
-    let commentsHTML = "";
-    a.comments.forEach(c => {
-        commentsHTML += `<p>💬 ${c}</p>`;
-    });
+    let comments = a.comments.map(c=>`<div class="comment">${c}</div>`).join("");
 
-    const content = `
+    fullArticle.innerHTML = `
         <h1>${a.title}</h1>
         <p>${a.content}</p>
 
-        <button class="like" onclick="likeArticle(${index})">
-            ❤️ Like (${a.likes})
-        </button>
+        <button class="like" onclick="like(${i})">❤️ ${a.likes}</button>
+        <button class="close" onclick="closeArticle()">Close</button>
 
-        <button class="close" onclick="closeArticle()">❌ Close</button>
-
-        <h3>Comments</h3>
-        ${commentsHTML}
-
-        <input id="commentInput" placeholder="Write comment...">
-        <button onclick="addComment(${index})">Post</button>
+        <div class="comment-box">
+            <h3>Comments</h3>
+            ${comments}
+            <input id="cmt" placeholder="Write comment...">
+            <button onclick="addComment(${i})">Post</button>
+        </div>
     `;
 
-    const box = document.getElementById("fullArticle");
-    box.innerHTML = content;
-    box.style.display = "block";
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    fullArticle.style.display="block";
+    window.scrollTo({top:0, behavior:'smooth'});
 }
 
-function likeArticle(index) {
-    articles[index].likes++;
-    saveArticles();
-    readMore(index);
+function like(i){
+    articles[i].likes++;
+    save();
+    readMore(i);
 }
 
-function addComment(index) {
-    const input = document.getElementById("commentInput");
-    if (input.value.trim() === "") return;
+function addComment(i){
+    let val = cmt.value.trim();
+    if(!val) return;
 
-    articles[index].comments.push(input.value);
-    input.value = "";
-
-    saveArticles();
-    readMore(index);
+    articles[i].comments.push(val);
+    cmt.value="";
+    save();
+    readMore(i);
 }
 
-function closeArticle() {
-    document.getElementById("fullArticle").style.display = "none";
+function closeArticle(){
+    fullArticle.style.display="none";
 }
 
-// Initial load
-displayArticles();
+display();
 </script>
 
 </body>
