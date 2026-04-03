@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M. Abbas | Engineering Portfolio</title>
+    <title>M. Abbas | Computer Engineering Portfolio</title>
     <style>
         :root {
             --bg-deep: #020617;
@@ -20,25 +20,24 @@
                 radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
                 radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.1) 0px, transparent 50%);
             color: #f8fafc;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding-bottom: 50px;
         }
 
-        /* Hero Section with your Image 'ab.png' */
         .header-main {
             padding: 100px 20px 40px;
             text-align: center;
         }
 
         .profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             border: 3px solid var(--neon-blue);
             object-fit: cover;
             margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
         }
 
         .identity-card {
@@ -57,6 +56,7 @@
             background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
         .roll-badge {
@@ -68,6 +68,7 @@
             font-size: 0.85rem;
             border: 1px solid var(--neon-blue);
             margin-top: 10px;
+            letter-spacing: 1px;
         }
 
         .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
@@ -78,35 +79,52 @@
             padding: 30px;
             border: 1px solid var(--border);
             margin-bottom: 30px;
+            transition: 0.3s;
         }
 
-        /* Project Image Section using 'ac.png' */
+        .content-section:hover {
+            border-color: var(--neon-purple);
+        }
+
+        /* Project Image Section using the newly generated art */
         .project-image {
             width: 100%;
-            height: 250px;
-            background: url('ac.png') center/cover;
+            height: 300px; /* Increased height for the illustration */
+            background: url('edge_intelligence_v1.png') center/cover;
             border-radius: 12px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        h2 { color: var(--neon-blue); font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; }
+        h2 { color: var(--neon-blue); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+
+        .tech-tag {
+            background: #1e293b;
+            color: var(--neon-purple);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            border: 1px solid rgba(129, 140, 248, 0.2);
+        }
 
         .btn-link {
             display: inline-block;
-            padding: 10px 25px;
-            border: 1.5px solid var(--neon-purple);
-            color: var(--neon-purple);
+            padding: 12px 28px;
+            border: 1.5px solid var(--neon-blue);
+            color: var(--neon-blue);
             text-decoration: none;
             border-radius: 8px;
             transition: 0.3s;
             font-weight: 600;
+            margin-top: 15px;
         }
 
         .btn-link:hover {
-            background: var(--neon-purple);
-            color: white;
-            box-shadow: 0 0 15px rgba(129, 140, 248, 0.4);
+            background: var(--neon-blue);
+            color: var(--bg-deep);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
         }
     </style>
 </head>
@@ -117,35 +135,46 @@
         <div class="identity-card">
             <h1 class="name-title">M. ABBAS</h1>
             <div class="roll-badge">ENGINEER_ID: 149</div>
-            <p style="color: var(--text-dim); margin-top: 15px;">
-                Computer Engineering | UET Lahore <br>
-                Machine Learning & SQL Database Architect
+            <p style="color: var(--text-dim); margin-top: 15px; line-height: 1.6;">
+                Computer Engineering Student | UET Lahore <br>
+                Embedded Systems & Full-Stack Database Architect
             </p>
         </div>
     </header>
 
     <div class="container">
+        
         <div class="content-section">
-            <h2>Featured Research</h2>
-            <div class="project-image"></div> <h3 style="margin: 0;">Breast Cancer Survival Analysis</h3>
-            <p style="color: var(--text-dim); font-size: 0.95rem;">
-                A collaborative study on predictive modeling using Python. This project utilizes clinical data to visualize survival probabilities through high-fidelity heatmaps and statistical analysis.
+            <h2>01 // FEATURED_ARTICLE</h2>
+            
+            <div class="project-image"></div> 
+            
+            <h3 style="margin: 0; font-size: 1.6rem;">Optimizing Edge Intelligence: Real-Time Data Pipelines</h3>
+            <div style="margin: 10px 0;">
+                <span class="tech-tag">IoT</span>
+                <span class="tech-tag">Edge Computing</span>
+                <span class="tech-tag">C# .NET</span>
+                <span class="tech-tag">MySQL</span>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.7;">
+                As we move toward 2026, the bottleneck in IoT is latency. This technical log analyzes how to architect **real-time data pipelines** that process sensor telemetry at the edge before syncing with a **MySQL** backend. We explore the critical role of local processing power in reducing bandwidth overhead for smart cities and industrial automation.
             </p>
-            <a href="#" class="btn-link">View Documentation →</a>
+            <a href="first_blog.html" class="btn-link">Read Full Technical Log →</a>
         </div>
 
         <div class="content-section">
-            <h2>Technical Skills</h2>
-            <p style="color: var(--text-dim);">
-                Expertise in <strong>C# .NET</strong>, <strong>Python (Data Science)</strong>, and <strong>MySQL</strong>. Experienced in setting up local server environments via WAMP for hardware telemetry and data logging.
+            <h2>02 // TECH_STACK</h2>
+            <p style="color: var(--text-dim); line-height: 1.7;">
+                Expertise in developing scalable <strong>C# .NET</strong> applications and managing complex relational databases via <strong>WAMP/MySQL</strong>. Proficient in <strong>Python</strong> for hardware-to-software data modeling and signal processing. Experienced in optimizing embedded code for memory-constrained devices.
             </p>
         </div>
 
-        <div class="content-section" style="text-align: center; border-style: dashed;">
-            <h2>Contact</h2>
-            <p>Ready for professional inquiries and research collaboration.</p>
-            <a href="mailto:your-email@example.com" class="btn-link" style="border-color: var(--neon-blue); color: var(--neon-blue);">Send Message</a>
+        <div class="content-section" style="text-align: center; border: 1px dashed var(--neon-purple);">
+            <h2>03 // INITIALIZE_CONNECTION</h2>
+            <p style="color: var(--text-dim);">Open for research collaborations in Embedded AI and System Architecture.</p>
+            <a href="mailto:your-email@example.com" class="btn-link" style="border-color: var(--neon-purple); color: var(--neon-purple);">SEND_MESSAGE.EXE</a>
         </div>
+
     </div>
 
 </body>
