@@ -1,162 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M. Abbas | Engineering Portfolio</title>
-    <style>
-        :root {
-            --bg-deep: #020617;
-            --glass: rgba(30, 41, 59, 0.7);
-            --neon-blue: #38bdf8;
-            --neon-purple: #818cf8;
-            --border: rgba(255, 255, 255, 0.1);
-            --text-dim: #94a3b8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M. Abbas | Portfolio</title>
 
-        body {
-            background: var(--bg-deep);
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
-            color: #f8fafc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding-bottom: 50px;
-            line-height: 1.6;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        .header-main { padding: 80px 20px 40px; text-align: center; }
+<style>
+:root {
+    --bg: #020617;
+    --card: rgba(15,23,42,0.7);
+    --blue: #38bdf8;
+    --purple: #818cf8;
+    --text: #e2e8f0;
+    --dim: #94a3b8;
+}
 
-        .profile-pic {
-            width: 150px; height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--neon-blue);
-            object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
-        }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-        .identity-card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 24px;
-            border: 1px solid var(--border);
-            max-width: 700px;
-            margin: 0 auto;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
 
-        .name-title {
-            font-size: 3rem; margin: 0;
-            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
+/* HERO */
+.hero {
+    text-align:center;
+    padding:100px 20px;
+}
 
-        .roll-badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--neon-blue);
-            padding: 5px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            border: 1px solid var(--neon-blue);
-            margin-top: 10px;
-            letter-spacing: 2px;
-        }
+.profile {
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    border:3px solid var(--blue);
+    object-fit:cover;
+    box-shadow:0 0 30px var(--blue);
+}
 
-        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
+h1 {
+    font-size:3rem;
+    margin-top:20px;
+    background:linear-gradient(to right,var(--blue),var(--purple));
+    -webkit-background-clip:text;
+    color:transparent;
+}
 
-        .content-section {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 20px;
-            padding: 35px;
-            border: 1px solid var(--border);
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
+.subtitle {
+    color:var(--dim);
+    margin-top:10px;
+}
 
-        .content-section:hover { transform: translateY(-5px); border-color: var(--neon-purple); }
+/* SECTION */
+.container {
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
 
-        .article-banner {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
+.section {
+    background:var(--card);
+    margin:20px 0;
+    padding:30px;
+    border-radius:20px;
+    transition:0.3s;
+}
 
-        .article-banner img { width: 100%; display: block; border-radius: 12px; }
+.section:hover {
+    transform:translateY(-5px);
+    border:1px solid var(--purple);
+}
 
-        h2 { color: var(--neon-blue); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+.section h2 {
+    color:var(--blue);
+    margin-bottom:15px;
+}
 
-        .tag-row { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
-        .tag {
-            background: #1e293b; color: var(--neon-purple);
-            padding: 4px 12px; border-radius: 6px; font-size: 0.8rem;
-            border: 1px solid rgba(129, 140, 248, 0.3);
-        }
+/* BLOG */
+.blog-img {
+    width:100%;
+    border-radius:15px;
+    margin-bottom:15px;
+}
 
-        .btn-primary {
-            display: inline-block; padding: 12px 30px;
-            border: 1.5px solid var(--neon-blue);
-            color: var(--neon-blue); text-decoration: none;
-            border-radius: 10px; font-weight: bold; margin-top: 15px;
-        }
+.btn {
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 20px;
+    border:1px solid var(--blue);
+    color:var(--blue);
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
 
-        .btn-primary:hover {
-            background: var(--neon-blue); color: var(--bg-deep);
-            box-shadow: 0 0 20px var(--neon-blue);
-        }
-    </style>
+.btn:hover {
+    background:var(--blue);
+    color:black;
+}
+
+/* SKILLS */
+.skills {
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.skill {
+    background:#1e293b;
+    padding:6px 12px;
+    border-radius:6px;
+    border:1px solid var(--purple);
+}
+
+/* FOOTER */
+.footer {
+    text-align:center;
+    margin-top:40px;
+    color:var(--dim);
+}
+
+</style>
 </head>
+
 <body>
 
-    <header class="header-main">
-        <img src="ab.png" alt="M. Abbas Profile" class="profile-pic">
-        <div class="identity-card">
-            <h1 class="name-title">M. ABBAS</h1>
-            <div class="roll-badge">ROLL NO: 149</div>
-            <p style="color: var(--text-dim); margin-top: 15px;">
-                Computer Engineering Student | UET Lahore <br>
-                Specializing in IoT Architecture and Embedded Intelligence
-            </p>
-        </div>
-    </header>
+<!-- HERO -->
+<section class="hero">
+    <img src="abbas.jpeg" class="profile">
+    <h1>M. ABBAS</h1>
+    <p class="subtitle">Computer Engineering Student | IoT • Embedded • SQL</p>
+</section>
 
-    <div class="container">
-        <div class="content-section">
-            <h2>01 // FEATURED_TECH_LOG</h2>
-            
-            <div class="article-banner">
-                            </div>
+<div class="container">
 
-            <h3 style="font-size: 1.7rem; margin: 0;">Edge Intelligence: Redefining Real-Time Data Pipelines</h3>
-            
-            <div class="tag-row">
-                <span class="tag">IoT Architecture</span>
-                <span class="tag">SQL Optimization</span>
-                <span class="tag">C# Integration</span>
-            </div>
+<!-- BLOG 1 -->
+<div class="section">
+    <h2>🚀 Edge Intelligence</h2>
+    <img src="ab.png" class="blog-img">
+    <p class="subtitle">Building real-time IoT pipelines with MySQL & edge systems.</p>
+    <a href="#" class="btn">Read More</a>
+</div>
 
-            <p style="color: var(--text-dim);">
-                In modern engineering, the focus is shifting to <strong>Edge Computing</strong>. This project explores using <strong>MySQL</strong> and <strong>C#</strong> to build high-speed telemetry pipelines. By processing data locally at the sensor node, we reduce latency and server load significantly.
-            </p>
-            
-            <img src="ac.png" alt="Data Visualization" style="width:100%; border-radius: 10px; margin-top: 15px; opacity: 0.8;">
-            <br><br>
-            <a href="first_blog.html" class="btn-primary">Open Technical Log</a>
-        </div>
+<!-- BLOG 2 -->
+<div class="section">
+    <h2>📊 SQL Optimization</h2>
+    <img src="ac.png" class="blog-img">
+    <p class="subtitle">Advanced techniques to improve database performance.</p>
+    <a href="#" class="btn">Read More</a>
+</div>
 
-        <div class="content-section" style="text-align: center; border: 1px dashed var(--neon-purple);">
-            <h2>02 // INITIALIZE_CONNECTION</h2>
-            <p>Ready to collaborate on Computer Engineering research and development.</p>
-            <a href="mailto:your-email@example.com" class="btn-primary" style="border-color: var(--neon-purple); color: var(--neon-purple);">SEND_MESSAGE.EXE</a>
-        </div>
+<!-- SKILLS -->
+<div class="section">
+    <h2>💻 Technical Skills</h2>
+    <div class="skills">
+        <span class="skill">C#</span>
+        <span class="skill">Python</span>
+        <span class="skill">MySQL</span>
+        <span class="skill">C Programming</span>
+        <span class="skill">IoT</span>
     </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section" style="text-align:center;">
+    <h2>📩 Contact</h2>
+    <p class="subtitle">Ready for internships & projects</p>
+    <a href="mailto:your-email@example.com" class="btn">Email Me</a>
+</div>
+
+</div>
+
+<div class="footer">
+    © 2026 M. Abbas Portfolio
+</div>
 
 </body>
 </html>
