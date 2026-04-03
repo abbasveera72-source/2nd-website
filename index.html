@@ -12,6 +12,8 @@
             padding:20px;
         }
 
+        h2 { margin-top:10px; }
+
         .profile img {
             width:80px;
             height:80px;
@@ -38,12 +40,14 @@
             padding:20px;
             margin-bottom:20px;
             border-radius:10px;
-            animation: slideDown 0.5s ease;
         }
 
-        @keyframes slideDown {
-            from {opacity:0; transform:translateY(-20px);}
-            to {opacity:1; transform:translateY(0);}
+        input, textarea {
+            width:90%;
+            margin:5px;
+            padding:10px;
+            border-radius:5px;
+            border:none;
         }
 
         button {
@@ -55,103 +59,100 @@
             cursor:pointer;
         }
 
-        .like {
-            background:#ef4444;
-            color:white;
-        }
-
-        .close {
-            background:#64748b;
-        }
-
-        textarea {
-            width:90%;
-            margin-top:10px;
-            padding:10px;
-            border-radius:5px;
-            border:none;
-        }
+        .like { background:#ef4444; }
+        .close { background:#64748b; }
     </style>
 </head>
 
 <body>
 
-<!-- Full Article -->
-<div id="fullArticle"></div>
-
 <!-- Profile -->
 <div class="profile">
     <img src="abbas.jpeg">
-    <h2>Abbas Tech Blog</h2>
+    <h2>Abbas Tech Blog 🚀</h2>
 </div>
 
-<!-- Blog 1 -->
-<div class="article">
-    <img src="ac.png">
-    <p>Artificial Intelligence is changing the future...</p>
-    <button onclick="readMore('blog1')">Read More</button>
-</div>
+<!-- ADMIN PANEL -->
+<h3>Add New Article</h3>
+<input id="title" placeholder="Article Title">
+<input id="image" placeholder="Image file name (e.g. ac.png)">
+<textarea id="content" placeholder="Write your tech article..."></textarea>
+<br>
+<button onclick="addArticle()">➕ Publish</button>
 
-<!-- Blog 2 -->
-<div class="article">
-    <img src="ab.png">
-    <p>Web development is evolving rapidly in 2025...</p>
-    <button onclick="readMore('blog2')">Read More</button>
-</div>
+<!-- FULL ARTICLE VIEW -->
+<div id="fullArticle"></div>
+
+<!-- ARTICLES LIST -->
+<div id="articles"></div>
 
 <script>
-let likes = 0;
+let articles = JSON.parse(localStorage.getItem("articles")) || [];
 
-function readMore(blog) {
+function saveArticles() {
+    localStorage.setItem("articles", JSON.stringify(articles));
+}
 
-    let content = "";
+function addArticle() {
+    const title = document.getElementById("title").value;
+    const image = document.getElementById("image").value;
+    const content = document.getElementById("content").value;
 
-    if (blog === "blog1") {
-        content = `
-            <h1>🚀 The Rise of Artificial Intelligence</h1>
-            <p>
-            Artificial Intelligence (AI) is transforming the way we live and work. 
-            From smart assistants to self-driving cars, AI is everywhere.
-            </p>
-
-            <p>
-            In 2025, AI is being used in healthcare, education, and business automation. 
-            Tools like ChatGPT and machine learning models are helping people solve problems faster.
-            </p>
-
-            <p>
-            The future of AI looks even more powerful, with innovations in robotics, 
-            data analysis, and human-computer interaction.
-            </p>
-        `;
+    if (!title || !content) {
+        alert("Please fill all fields!");
+        return;
     }
 
-    if (blog === "blog2") {
-        content = `
-            <h1>💻 Modern Web Development in 2025</h1>
-            <p>
-            Web development has evolved significantly with new frameworks and technologies.
-            Developers now use tools like React, Tailwind CSS, and Node.js to build fast and responsive websites.
-            </p>
+    articles.unshift({
+        title,
+        image,
+        content,
+        likes: 0,
+        comments: []
+    });
 
-            <p>
-            Frontend development focuses on user experience, while backend systems handle data and logic.
-            Full-stack developers combine both skills to create complete applications.
-            </p>
+    saveArticles();
+    displayArticles();
+}
 
-            <p>
-            The future includes AI-powered websites, faster performance, and better security practices.
-            </p>
+function displayArticles() {
+    const container = document.getElementById("articles");
+    container.innerHTML = "";
+
+    articles.forEach((a, index) => {
+        container.innerHTML += `
+            <div class="article">
+                <img src="${a.image}">
+                <h3>${a.title}</h3>
+                <button onclick="readMore(${index})">Read More</button>
+            </div>
         `;
-    }
+    });
+}
 
-    content += `
-        <br>
-        <button class="like" onclick="addLike()">❤️ Like (<span id="likeCount">${likes}</span>)</button>
+function readMore(index) {
+    const a = articles[index];
+
+    let commentsHTML = "";
+    a.comments.forEach(c => {
+        commentsHTML += `<p>💬 ${c}</p>`;
+    });
+
+    const content = `
+        <h1>${a.title}</h1>
+        <p>${a.content}</p>
+
+        <button class="like" onclick="likeArticle(${index})">
+            ❤️ Like (${a.likes})
+        </button>
+
         <button class="close" onclick="closeArticle()">❌ Close</button>
 
         <h3>Comments</h3>
-        <textarea placeholder="Write a comment..."></textarea>
+        ${commentsHTML}
+
+        <input id="commentInput" placeholder="Write comment...">
+        <button onclick="addComment(${index})">Post</button>
     `;
 
     const box = document.getElementById("fullArticle");
@@ -161,14 +162,29 @@ function readMore(blog) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function addLike() {
-    likes++;
-    document.getElementById("likeCount").innerText = likes;
+function likeArticle(index) {
+    articles[index].likes++;
+    saveArticles();
+    readMore(index);
+}
+
+function addComment(index) {
+    const input = document.getElementById("commentInput");
+    if (input.value.trim() === "") return;
+
+    articles[index].comments.push(input.value);
+    input.value = "";
+
+    saveArticles();
+    readMore(index);
 }
 
 function closeArticle() {
     document.getElementById("fullArticle").style.display = "none";
 }
+
+// Initial load
+displayArticles();
 </script>
 
 </body>
