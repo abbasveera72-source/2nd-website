@@ -4,115 +4,89 @@
     <title>Abbas Tech Blog</title>
 
     <style>
-        * {
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Segoe UI', sans-serif;
-        }
-
         body {
-            display:flex;
+            margin:0;
+            font-family: 'Segoe UI', sans-serif;
             background:#0f172a;
             color:#e2e8f0;
         }
 
-        /* SIDEBAR */
-        .sidebar {
-            width:250px;
+        header {
             background:#020617;
-            height:100vh;
             padding:20px;
-            position:fixed;
+            text-align:center;
+            border-bottom:1px solid #1e293b;
         }
 
-        .sidebar img {
+        header img {
             width:70px;
             border-radius:50%;
-            display:block;
+        }
+
+        h1 { margin:10px 0 5px; }
+        h3 { margin-top:30px; }
+
+        .container {
+            max-width:900px;
             margin:auto;
-        }
-
-        .sidebar h2 {
-            text-align:center;
-            margin:10px 0;
-        }
-
-        .sidebar p {
-            text-align:center;
-            font-size:14px;
-            color:#94a3b8;
-        }
-
-        /* MAIN */
-        .main {
-            margin-left:250px;
             padding:20px;
-            width:100%;
         }
 
-        /* ADMIN PANEL */
         .admin {
             background:#1e293b;
             padding:20px;
             border-radius:12px;
-            margin-bottom:20px;
+            margin-bottom:30px;
         }
 
         input, textarea {
             width:100%;
             padding:10px;
             margin:8px 0;
-            border:none;
             border-radius:8px;
+            border:none;
+            outline:none;
             background:#0f172a;
             color:white;
         }
 
         button {
-            padding:10px 15px;
+            padding:10px 16px;
             border:none;
             border-radius:8px;
             cursor:pointer;
+            font-weight:bold;
         }
 
         .publish { background:#38bdf8; color:black; }
 
-        /* ARTICLE GRID */
-        .articles {
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-            gap:20px;
-        }
-
-        .card {
+        .article {
             background:#1e293b;
+            margin-bottom:20px;
             border-radius:12px;
             overflow:hidden;
             transition:0.3s;
         }
 
-        .card:hover {
-            transform:scale(1.03);
+        .article:hover {
+            transform:translateY(-5px);
         }
 
-        .card img {
+        .article img {
             width:100%;
-            height:180px;
+            height:200px;
             object-fit:cover;
         }
 
-        .card-body {
+        .article-content {
             padding:15px;
         }
 
-        .read {
+        .read-btn {
             background:#22c55e;
             color:white;
-            margin-top:10px;
         }
 
-        /* FULL ARTICLE */
         #fullArticle {
             display:none;
             background:#020617;
@@ -123,6 +97,8 @@
 
         .like { background:#ef4444; color:white; }
         .close { background:#64748b; color:white; }
+
+        .comment-box { margin-top:15px; }
 
         .comment {
             background:#1e293b;
@@ -135,22 +111,20 @@
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
+<header>
     <img src="abbas.jpeg">
-    <h2>Abbas</h2>
-    <p>Tech Blogger 🚀</p>
-</div>
+    <h1>Abbas Tech Blog</h1>
+    <p>Latest in Technology 🚀</p>
+</header>
 
-<!-- MAIN CONTENT -->
-<div class="main">
+<div class="container">
 
-    <!-- ADMIN -->
+    <!-- ADMIN PANEL -->
     <div class="admin">
-        <h3>Create Article</h3>
-        <input id="title" placeholder="Title">
-        <input id="image" placeholder="Image (ac.png)">
-        <textarea id="content" placeholder="Write tech article..."></textarea>
+        <h3>Publish Article</h3>
+        <input id="titleInput" placeholder="Article Title">
+        <input id="imageInput" placeholder="Image (e.g. ac.png)">
+        <textarea id="contentInput" rows="4" placeholder="Write your article..."></textarea>
         <button class="publish" onclick="addArticle()">Publish</button>
     </div>
 
@@ -158,85 +132,112 @@
     <div id="fullArticle"></div>
 
     <!-- ARTICLES -->
-    <div class="articles" id="articles"></div>
+    <div id="articlesDiv"></div>
 
 </div>
 
 <script>
 let articles = JSON.parse(localStorage.getItem("articles")) || [];
 
-function save(){
+function save() {
     localStorage.setItem("articles", JSON.stringify(articles));
 }
 
-function addArticle(){
-    let t = title.value;
-    let i = image.value;
-    let c = content.value;
+function addArticle() {
+    const title = document.getElementById("titleInput").value;
+    const image = document.getElementById("imageInput").value;
+    const content = document.getElementById("contentInput").value;
 
-    if(!t || !c) return alert("Fill all fields!");
+    if (!title || !content) {
+        alert("Fill all fields!");
+        return;
+    }
 
-    articles.unshift({title:t,image:i,content:c,likes:0,comments:[]});
+    articles.unshift({
+        title: title,
+        image: image,
+        content: content,
+        likes: 0,
+        comments: []
+    });
+
     save();
     display();
+
+    // Clear inputs
+    document.getElementById("titleInput").value = "";
+    document.getElementById("imageInput").value = "";
+    document.getElementById("contentInput").value = "";
 }
 
-function display(){
-    articles.innerHTML="";
-    articles.forEach((a,index)=>{
-        articles.innerHTML += `
-        <div class="card">
+function display() {
+    const container = document.getElementById("articlesDiv");
+    container.innerHTML = "";
+
+    articles.forEach((a, i) => {
+        container.innerHTML += `
+        <div class="article">
             <img src="${a.image}">
-            <div class="card-body">
-                <h3>${a.title}</h3>
-                <button class="read" onclick="readMore(${index})">Read</button>
+            <div class="article-content">
+                <h2>${a.title}</h2>
+                <button class="read-btn" onclick="readMore(${i})">Read More</button>
             </div>
         </div>`;
     });
 }
 
-function readMore(i){
-    let a = articles[i];
+function readMore(i) {
+    const a = articles[i];
 
-    let cmts = a.comments.map(c=>`<div class="comment">${c}</div>`).join("");
+    let commentsHTML = "";
+    a.comments.forEach(c => {
+        commentsHTML += `<div class="comment">${c}</div>`;
+    });
 
-    fullArticle.innerHTML = `
+    const box = document.getElementById("fullArticle");
+    box.innerHTML = `
         <h1>${a.title}</h1>
         <p>${a.content}</p>
 
         <button class="like" onclick="like(${i})">❤️ ${a.likes}</button>
         <button class="close" onclick="closeArticle()">Close</button>
 
-        <h3>Comments</h3>
-        ${cmts}
-        <input id="cmt" placeholder="Write comment...">
-        <button onclick="addComment(${i})">Post</button>
+        <div class="comment-box">
+            <h3>Comments</h3>
+            ${commentsHTML}
+            <input id="cmt" placeholder="Write comment...">
+            <button onclick="addComment(${i})">Post</button>
+        </div>
     `;
 
-    fullArticle.style.display="block";
-    window.scrollTo({top:0,behavior:'smooth'});
+    box.style.display = "block";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function like(i){
+function like(i) {
     articles[i].likes++;
     save();
     readMore(i);
 }
 
-function addComment(i){
-    let val = cmt.value.trim();
-    if(!val) return;
+function addComment(i) {
+    const input = document.getElementById("cmt");
+    const val = input.value.trim();
+
+    if (!val) return;
 
     articles[i].comments.push(val);
-    cmt.value="";
+    input.value = "";
+
     save();
     readMore(i);
 }
 
-function closeArticle(){
-    fullArticle.style.display="none";
+function closeArticle() {
+    document.getElementById("fullArticle").style.display = "none";
 }
 
+// Load on start
 display();
 </script>
 
