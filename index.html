@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M. Abbas | Computer Engineering Portfolio</title>
+    <title>M. Abbas | Engineering Portfolio</title>
     <style>
         :root {
             --bg-deep: #020617;
@@ -17,12 +17,13 @@
         body {
             background: var(--bg-deep);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.1) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
             color: #f8fafc;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
             padding-bottom: 50px;
+            line-height: 1.6;
         }
 
         .header-main {
@@ -31,13 +32,13 @@
         }
 
         .profile-pic {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: 3px solid var(--neon-blue);
             object-fit: cover;
             margin-bottom: 20px;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
         }
 
         .identity-card {
@@ -51,7 +52,7 @@
         }
 
         .name-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             margin: 0;
             background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
@@ -63,68 +64,78 @@
             display: inline-block;
             background: rgba(56, 189, 248, 0.1);
             color: var(--neon-blue);
-            padding: 5px 15px;
+            padding: 5px 18px;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             border: 1px solid var(--neon-blue);
             margin-top: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
-        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .container { max-width: 850px; margin: 40px auto; padding: 0 20px; }
 
         .content-section {
             background: rgba(15, 23, 42, 0.6);
             border-radius: 20px;
-            padding: 30px;
+            padding: 35px;
             border: 1px solid var(--border);
             margin-bottom: 30px;
-            transition: 0.3s;
+            transition: transform 0.3s ease;
         }
 
         .content-section:hover {
+            transform: translateY(-5px);
             border-color: var(--neon-purple);
         }
 
-        /* Project Image Section using the newly generated art */
-        .project-image {
+        /* Banner for Tech Article */
+        .article-banner {
             width: 100%;
-            height: 300px; /* Increased height for the illustration */
-            background: url('edge_intelligence_v1.png') center/cover;
-            border-radius: 12px;
+            height: 320px;
+            background-color: #000;
+            border-radius: 15px;
             margin-bottom: 25px;
             border: 1px solid var(--border);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        h2 { color: var(--neon-blue); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+        .article-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-        .tech-tag {
+        h2 { color: var(--neon-blue); font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+
+        .tag-row { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+        .tag {
             background: #1e293b;
             color: var(--neon-purple);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-right: 5px;
-            border: 1px solid rgba(129, 140, 248, 0.2);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(129, 140, 248, 0.3);
         }
 
-        .btn-link {
+        .btn-primary {
             display: inline-block;
-            padding: 12px 28px;
+            padding: 12px 30px;
             border: 1.5px solid var(--neon-blue);
             color: var(--neon-blue);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: 0.3s;
-            font-weight: 600;
+            font-weight: bold;
             margin-top: 15px;
         }
 
-        .btn-link:hover {
+        .btn-primary:hover {
             background: var(--neon-blue);
             color: var(--bg-deep);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 0 20px var(--neon-blue);
         }
     </style>
 </head>
@@ -134,10 +145,10 @@
         <img src="ab.png" alt="M. Abbas" class="profile-pic">
         <div class="identity-card">
             <h1 class="name-title">M. ABBAS</h1>
-            <div class="roll-badge">ENGINEER_ID: 149</div>
-            <p style="color: var(--text-dim); margin-top: 15px; line-height: 1.6;">
+            <div class="roll-badge">ROLL NO: 149</div>
+            <p style="color: var(--text-dim); margin-top: 15px;">
                 Computer Engineering Student | UET Lahore <br>
-                Embedded Systems & Full-Stack Database Architect
+                Specializing in IoT, SQL Architecture, and Embedded Intelligence
             </p>
         </div>
     </header>
@@ -145,34 +156,39 @@
     <div class="container">
         
         <div class="content-section">
-            <h2>01 // FEATURED_ARTICLE</h2>
+            <h2>01 // FEATURED_BLOG</h2>
             
-            <div class="project-image"></div> 
-            
-            <h3 style="margin: 0; font-size: 1.6rem;">Optimizing Edge Intelligence: Real-Time Data Pipelines</h3>
-            <div style="margin: 10px 0;">
-                <span class="tech-tag">IoT</span>
-                <span class="tech-tag">Edge Computing</span>
-                <span class="tech-tag">C# .NET</span>
-                <span class="tech-tag">MySQL</span>
+            <div class="article-banner">
+                
             </div>
-            <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.7;">
-                As we move toward 2026, the bottleneck in IoT is latency. This technical log analyzes how to architect **real-time data pipelines** that process sensor telemetry at the edge before syncing with a **MySQL** backend. We explore the critical role of local processing power in reducing bandwidth overhead for smart cities and industrial automation.
+
+            <h3 style="font-size: 1.7rem; margin: 0;">Edge Intelligence: Redefining Real-Time Data Pipelines</h3>
+            
+            <div class="tag-row">
+                <span class="tag">Embedded Systems</span>
+                <span class="tag">SQL Optimization</span>
+                <span class="tag">IoT Nodes</span>
+                <span class="tag">C# Integration</span>
+            </div>
+
+            <p style="color: var(--text-dim);">
+                In the modern engineering landscape, moving data from hardware sensors to a central server efficiently is critical. This article explores using <strong>WAMP/MySQL</strong> frameworks to build robust telemetry pipelines, ensuring data integrity while minimizing latency in <strong>IoT edge nodes</strong>.
             </p>
-            <a href="first_blog.html" class="btn-link">Read Full Technical Log →</a>
+            
+            <a href="first_blog.html" class="btn-primary">Open Technical Log</a>
         </div>
 
         <div class="content-section">
-            <h2>02 // TECH_STACK</h2>
-            <p style="color: var(--text-dim); line-height: 1.7;">
-                Expertise in developing scalable <strong>C# .NET</strong> applications and managing complex relational databases via <strong>WAMP/MySQL</strong>. Proficient in <strong>Python</strong> for hardware-to-software data modeling and signal processing. Experienced in optimizing embedded code for memory-constrained devices.
+            <h2>02 // TECHNICAL_STACK</h2>
+            <p style="color: var(--text-dim);">
+                Highly proficient in <strong>C# .NET</strong> development and <strong>Python</strong> for data modeling. Expertise in managing relational databases using <strong>MySQL</strong> and developing low-level <strong>C</strong> logic for hardware interfaces.
             </p>
         </div>
 
         <div class="content-section" style="text-align: center; border: 1px dashed var(--neon-purple);">
-            <h2>03 // INITIALIZE_CONNECTION</h2>
-            <p style="color: var(--text-dim);">Open for research collaborations in Embedded AI and System Architecture.</p>
-            <a href="mailto:your-email@example.com" class="btn-link" style="border-color: var(--neon-purple); color: var(--neon-purple);">SEND_MESSAGE.EXE</a>
+            <h2>03 // CONNECT</h2>
+            <p>Seeking opportunities in system architecture and software engineering.</p>
+            <a href="mailto:your-email@example.com" class="btn-primary" style="border-color: var(--neon-purple); color: var(--neon-purple);">Initialize Connection</a>
         </div>
 
     </div>
