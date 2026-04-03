@@ -58,7 +58,10 @@
             font-weight:bold;
         }
 
-        .publish { background:#38bdf8; color:black; }
+        .publish {
+            background:#38bdf8;
+            color:black;
+        }
 
         .article {
             background:#1e293b;
@@ -98,7 +101,9 @@
         .like { background:#ef4444; color:white; }
         .close { background:#64748b; color:white; }
 
-        .comment-box { margin-top:15px; }
+        .comment-box {
+            margin-top:15px;
+        }
 
         .comment {
             background:#1e293b;
@@ -122,9 +127,9 @@
     <!-- ADMIN PANEL -->
     <div class="admin">
         <h3>Publish Article</h3>
-        <input id="titleInput" placeholder="Article Title">
-        <input id="imageInput" placeholder="Image (e.g. ac.png)">
-        <textarea id="contentInput" rows="4" placeholder="Write your article..."></textarea>
+        <input id="title" placeholder="Article Title">
+        <input id="image" placeholder="Image (e.g. ac.png)">
+        <textarea id="content" rows="4" placeholder="Write your article..."></textarea>
         <button class="publish" onclick="addArticle()">Publish</button>
     </div>
 
@@ -132,7 +137,7 @@
     <div id="fullArticle"></div>
 
     <!-- ARTICLES -->
-    <div id="articlesDiv"></div>
+    <div id="articles"></div>
 
 </div>
 
@@ -144,38 +149,27 @@ function save() {
 }
 
 function addArticle() {
-    const title = document.getElementById("titleInput").value;
-    const image = document.getElementById("imageInput").value;
-    const content = document.getElementById("contentInput").value;
+    const title = titleInput.value;
+    const image = imageInput.value;
+    const content = contentInput.value;
 
-    if (!title || !content) {
-        alert("Fill all fields!");
-        return;
-    }
+    if (!title || !content) return alert("Fill all fields!");
 
     articles.unshift({
-        title: title,
-        image: image,
-        content: content,
-        likes: 0,
-        comments: []
+        title, image, content,
+        likes:0,
+        comments:[]
     });
 
     save();
     display();
-
-    // Clear inputs
-    document.getElementById("titleInput").value = "";
-    document.getElementById("imageInput").value = "";
-    document.getElementById("contentInput").value = "";
 }
 
 function display() {
-    const container = document.getElementById("articlesDiv");
-    container.innerHTML = "";
+    articlesDiv.innerHTML = "";
 
-    articles.forEach((a, i) => {
-        container.innerHTML += `
+    articles.forEach((a,i)=>{
+        articlesDiv.innerHTML += `
         <div class="article">
             <img src="${a.image}">
             <div class="article-content">
@@ -186,16 +180,12 @@ function display() {
     });
 }
 
-function readMore(i) {
-    const a = articles[i];
+function readMore(i){
+    let a = articles[i];
 
-    let commentsHTML = "";
-    a.comments.forEach(c => {
-        commentsHTML += `<div class="comment">${c}</div>`;
-    });
+    let comments = a.comments.map(c=>`<div class="comment">${c}</div>`).join("");
 
-    const box = document.getElementById("fullArticle");
-    box.innerHTML = `
+    fullArticle.innerHTML = `
         <h1>${a.title}</h1>
         <p>${a.content}</p>
 
@@ -204,40 +194,36 @@ function readMore(i) {
 
         <div class="comment-box">
             <h3>Comments</h3>
-            ${commentsHTML}
+            ${comments}
             <input id="cmt" placeholder="Write comment...">
             <button onclick="addComment(${i})">Post</button>
         </div>
     `;
 
-    box.style.display = "block";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    fullArticle.style.display="block";
+    window.scrollTo({top:0, behavior:'smooth'});
 }
 
-function like(i) {
+function like(i){
     articles[i].likes++;
     save();
     readMore(i);
 }
 
-function addComment(i) {
-    const input = document.getElementById("cmt");
-    const val = input.value.trim();
-
-    if (!val) return;
+function addComment(i){
+    let val = cmt.value.trim();
+    if(!val) return;
 
     articles[i].comments.push(val);
-    input.value = "";
-
+    cmt.value="";
     save();
     readMore(i);
 }
 
-function closeArticle() {
-    document.getElementById("fullArticle").style.display = "none";
+function closeArticle(){
+    fullArticle.style.display="none";
 }
 
-// Load on start
 display();
 </script>
 
