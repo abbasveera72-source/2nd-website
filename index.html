@@ -1,155 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M. Abbas | Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
 
-<style>
-:root {
-    --bg: #020617;
-    --card: rgba(15,23,42,0.7);
-    --blue: #38bdf8;
-    --purple: #818cf8;
-    --text: #e2e8f0;
-    --dim: #94a3b8;
-}
+        header {
+            padding: 40px;
+            background: #1e293b;
+        }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    margin: 0;
-}
+        .profile {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-/* HERO */
-.hero {
-    text-align: center;
-    padding: 100px 20px;
-}
+        .section {
+            padding: 40px;
+        }
 
-/* ✅ FIXED PROFILE IMAGE */
-.profile {
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    border: 3px solid var(--blue);
-    object-fit: cover;
-    box-shadow: 0 0 40px var(--blue);
-    display: block;
-    margin: auto;
-}
+        .blog-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-/* NAME */
-h1 {
-    font-size: 3rem;
-    margin-top: 20px;
-    color: #60a5fa;
-}
+        .blog {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+            width: 250px;
+        }
 
-/* TEXT */
-.subtitle {
-    color: var(--dim);
-    margin-top: 10px;
-}
+        .blog img {
+            width: 100%;
+            border-radius: 10px;
+        }
 
-/* CONTAINER */
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
-}
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #38bdf8;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
-/* CARD */
-.section {
-    background: var(--card);
-    margin: 20px 0;
-    padding: 30px;
-    border-radius: 20px;
-}
-
-/* BLOG IMAGE */
-.blog-img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin: 15px 0;
-}
-
-/* BUTTON */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border: 1px solid var(--blue);
-    color: var(--blue);
-    text-decoration: none;
-    border-radius: 8px;
-}
-
-.btn:hover {
-    background: var(--blue);
-    color: black;
-}
-
-.footer {
-    text-align: center;
-    color: var(--dim);
-    margin-top: 30px;
-}
-</style>
+        .btn:hover {
+            background: #0ea5e9;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="hero">
+<header>
+    <img src="ab.png" class="profile" alt="Profile Image">
+    <h1>Abbas</h1>
+    <p>Web Developer</p>
+</header>
 
-    <!-- 🔴 IMPORTANT: MATCH THIS NAME EXACTLY -->
-    <img src="abbas.jpeg" class="profile" alt="profile">
+<section class="section">
+    <h2>My Blogs</h2>
 
-    <h1>M. ABBAS</h1>
-    <p class="subtitle">Computer Engineering Student | IoT • Embedded • SQL</p>
+    <div class="blog-container">
 
+        <!-- BLOG 1 -->
+        <div class="blog">
+            <img src="ab.png" alt="Blog 1">
+            <h3>Blog 1</h3>
+            <p>This is my first blog.</p>
+            <a href="blog1.html" class="btn">Read More</a>
+        </div>
+
+        <!-- BLOG 2 -->
+        <div class="blog">
+            <img src="ac.png" alt="Blog 2">
+            <h3>Blog 2</h3>
+            <p>This is my second blog.</p>
+            <a href="blog2.html" class="btn">Read More</a>
+        </div>
+
+    </div>
 </section>
-
-<div class="container">
-
-<!-- BLOG 1 -->
-<div class="section">
-    <h2>🚀 Edge Intelligence</h2>
-
-    <!-- BLOG IMAGE -->
-    <img src="ab.png" class="blog-img">
-
-    <p class="subtitle">
-        Building real-time IoT pipelines with MySQL & edge systems.
-    </p>
-
-    <!-- WORKING BUTTON -->
-    <a href="blog1.html" class="btn">Read More</a>
-</div>
-
-<!-- BLOG 2 -->
-<div class="section">
-    <h2>📊 SQL Optimization</h2>
-
-    <img src="ac.png" class="blog-img">
-
-    <p class="subtitle">
-        Advanced techniques to improve database performance.
-    </p>
-
-    <a href="blog2.html" class="btn">Read More</a>
-</div>
-
-</div>
-
-<div class="footer">
-    © 2026 M. Abbas
-</div>
 
 </body>
 </html>
